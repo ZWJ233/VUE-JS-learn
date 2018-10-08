@@ -1,0 +1,8 @@
+## 课堂作业
+1. 练习Vue中v-text v-html v-bind v-on v-for v-model :class :style等指令
+2. 完成简易计算器案例
+3. 完成跑马灯案例
+
+## 课外作业
+1. 完成todomvc中的第一个需求任务
+2. 对比vue和其他框架

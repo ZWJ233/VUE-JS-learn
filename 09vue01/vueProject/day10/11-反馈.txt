@@ -1,0 +1,24 @@
+﻿vue-resource 发送请求和promise的关系. 
+vue-resource 需要以服务器方式打开吗? 
+还是不太清楚,什么样的项目不需要服务器方式运行,什么样的项目需要服务器方式运行.
+
+
+数据库有点懵。。。
+1. 学会创建表和字段
+2. 学会基本的Sql语句 【CRUD】
+3. 学会使用 Express + MVC + mysql 进行网站开发
+
+老师，说说 vuex 这个东西吧
+
+老师，关于这个接口文档，我问了顺义学java的同学，他说他们一直以为接口文档是前端做的，说前端要不写他们哪知道前端要什么数据，咱们前端的想法，我就不说了...肿磨破？
+【https://www.zhihu.com/question/31100430】
+
+异步操作有什么特点
+
+webpack实现可以自动刷新。热更新、和热加载、热重载、怎么区别呢，--hot 是热更新还是热加载？有点蒙
+webpack.HotModuleRelacementPlugin
+Relacement -> 热替换 -> 热更新 -> 热加载
+
+
+有没有微信小程序的福利呢？
+【http://yun.itheima.com/open/c-4/p/1.html】

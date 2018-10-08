@@ -1,0 +1,11 @@
+﻿安装包的时候，总是出现这个问题：
+ code EINTEGRITY 
+
+sha1-Wx1XfkyIadbIYDvInpzRY3MD5G4= integrity checksum failed when using sha1: wanted sha1-Wx1XfkyIadbIYDvInpzRY3MD5G4= but got sha1-DGAGmuSqTZx4HMc9zckjFVhHZrk=. (707529 bytes) 
+
+
+看不懂！！！
+
+1. 网络原因，导致下载的包不全
+把自己的项目根目录中的 node_modules 删除，同时，找到 npm-cache 的目录，把它也给删除 
+C:\Users\自己的用户目录\AppData\Roaming\npm-cache

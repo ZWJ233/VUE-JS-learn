@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <style>
+    .red {
+      color: red;
+    }
+
+    .thin {
+      font-weight: 200;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .active {
+      letter-spacing: 0.5em;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 第一种使用数组绑定类 -->
+        <h1 :class="[thin,italic]">这是一个无敌帅的H1标签</h1>
+        <!-- 第二种使用三元运算符来绑定 -->
+        <h1 :class="[thin,italic,flag?'active':'']">这是一个无敌帅的H1标签</h1>
+        <!-- 第三种使用数组和对象结合 -->
+        <h1 :class="[thin,italic,{active:flag}]">这是一个无敌帅的H1标签</h1>
+        <!-- 第四种使用对象 -->
+        <h1 :class="{red:true,thin:true,italic:true,active:true}">这是一个无敌帅的H1标签</h1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                thin:'thin',
+                italic:'italic',
+                flag:true
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

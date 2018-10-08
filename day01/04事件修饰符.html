@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <style>
+        .box1{
+            padding: 50px;
+            background-color: pink;
+        }
+        .box2{
+            height: 500px;
+            width: 500px;
+            margin: 0 auto;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="app" class="box1" @click=box1Click>
+        <div class="box2" @click=box2Click>
+            <input type="button" value="按钮" @click=btnClick>
+        </div>
+    </div> -->
+
+    <!-- 使用.stop阻止冒泡 -->
+    <!-- <div id="app" class="box1" @click=box1Click>
+        <div class="box2" @click=box2Click>
+            <input type="button" value="按钮" @click.stop=btnClick>
+        </div>
+    </div> -->
+
+    <!-- 使用.prevent阻止默认行为 -->
+    <!-- <div id="app">
+            <a href="http://www.baidu.com" @click.prevent=btnClick>这是一个百度</a>
+    </div> -->
+
+    <!-- 使用.capture来捕获 -->
+    <!-- <div id="app" class="box1" @click.capture=box1Click>
+        <div class="box2" @click=box2Click>
+            <input type="button" value="按钮" @click=btnClick>
+        </div>
+    </div> -->
+
+    <!-- 使用.self只有自身触发事件时触发 -->
+    <!-- <div id="app" class="box1" @click=box1Click>
+            <div class="box2" @click.self=box2Click>
+                <input type="button" value="按钮" @click=btnClick>
+            </div>
+        </div> -->
+
+    <!-- 使用.once只触发一次事件 -->
+    <div id="app" >
+          <a href="http://www.baidu.com" @click.once.prevent=btnClick>这是一个百度 </a>  
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            methods:{
+                box1Click(){
+                    console.log('box1被点击了');
+                },
+                box2Click(){
+                    console.log('box2被点击了');
+                },
+                btnClick(){
+                    console.log('btn被点击了');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

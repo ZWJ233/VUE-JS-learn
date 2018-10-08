@@ -1,0 +1,50 @@
+﻿use和components注册有什么区别? 使用vscode,怎么忽略node_modules文件夹,很吃内存.
+使用vs code时多次cpu飙升至100%,导致电脑卡死...
+"files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/bower_components": true,
+        "**/jspm_packages": true,
+        "**/node_modules": true
+    },
+
+
+
+过滤器那出了点小问题，正在自行解决
+【这是一个真正的学生】
+
+git考验内存
+
+在使用组件之后，是不是不用再去考虑 插值表达式在页面上闪烁的问题了？？
+.vue的文件，是运行时编译的；      runtime-only
+
+没有psd设计图吗？
+
+老师的手真好看，敲代码的时候手法好飘逸，羡慕ing
+
+希望再稍微讲解一下 promise
+1. Promise 是一个 构造函数
+2. Promise 中，有两个 方法   Promise.resolve()  Promise.reject()
+3. Promise 的原型上，有两个方法   Promise.prototype.then()     Promise.prototype.catch()
+4. 只要new 了一个 Promise 的实例，那么 这个实例 只表示一个 形式上的 异步操作；
+    如果想要得到一个真正的异步操作， 在 new 的时候传递一个 function
+5. Promise 实例，只要被new出来，就会立即执行 传递的 function 中的异步方法；如果想让 promise 按需执行， 要把 创建 promise 的过程 放到 function 中去
+
+
+function getFile( fpath ){
+	return new Promise(function(resolve, reject){
+		fs.readFile(fpath, 'utf-8', function(err, dataStr){
+			if(err) return reject(err)
+			resolve(dataStr)
+		})
+	})
+}
+
+getFile('')
+.then(function(){}, function(){})
+
+vue-cli 和 gulp 怎么 webpack 混合搭配使用
+gulp-webpack
