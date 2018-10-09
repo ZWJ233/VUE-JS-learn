@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="addData"><input type="button" value="添加" @click=addHero>
+        <p v-for="(hero,i) in heros" :key=hero>
+            <input type="checkbox">{{hero}}
+        </p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                heros:['桐人','亚丝娜','爱丽丝'],
+                addData:''
+            },
+            methods:{
+                addHero(){
+                    this.heros.push(this.addData);
+                    this.addData = ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="demo">{{msg}}</p>  <!--v-if判断后面为true时执行模版,反之不执行模版  -->
+        <p v-show="demo">{{msg}}</p>  <!--v-show判断后面为true时元素display属性为block,反之display属性为none  -->
+        <input type="button" value="按钮" @click=change>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:'这是一个p标签',
+                demo:true
+            },
+            methods:{
+                change(){
+                    this.demo = !this.demo;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lib/vue-2.4.0.js"></script>
+  <link rel="stylesheet" href="../lib/bootstrap.min.css">
+</head>
+
+<body>
+  <div id="app">
+
+
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">添加品牌</h3>
+      </div>
+      <div class="panel-body form-inline">
+        <label>
+          Id:
+          <input type="text" class="form-control" v-model="id">
+        </label>
+
+        <label>
+          Name:
+          <input type="text" class="form-control" v-model="name" @keyup.enter=addHero()>
+        </label>
+        <input type="button" value="添加" class="btn btn-primary" @click=addHero()>
+
+        <label>
+          搜索名称关键字：
+          <input type="text" class="form-control" v-model="keywords" v-focus v-color="'skyblue'">
+        </label>
+      </div>
+    </div>
+
+
+
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Ctime</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in search(keywords)">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.ctime | timeFilter()}}</td>
+          <td><a href="#" @click.prevent=del(item.id)>删除</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+
+  <script>
+      Vue.filter('timeFilter',(date,pattern='') => {
+          var time = new Date(date);
+          var y = time.getFullYear()
+          var m = (time.getMonth() + 1).toString().padStart(2,0)
+          var d = time.getDate().toString().padStart(2,0)
+          return `${y}-${m}-${d}`
+      })
+
+      // Vue.directive('focus',{
+      //   bind(el){
+      //     el.focus();
+      //   },
+      //   inserted(el){
+      //     el.focus();
+      //   }
+      // })
+      Vue.directive('focus',(el) => {
+        el.focus();
+      })
+      Vue.directive('color',(el,data) => {
+        el.style.color = data.value
+      })
+
+
+
+      var vm = new Vue({
+          el:'#app',
+          data:{
+              id:'',
+              name:'',
+              keywords:'',
+              heros:[
+                {id:1,name:'桐人',ctime:'2016/5/12'},
+                {id:2,name:'亚丝娜',ctime:'2017/8/2'},
+                {id:3,name:'爱丽丝',ctime:'2018/9/23'}
+              ]
+          },
+          methods:{
+              addHero(){
+                var newHero = {id:this.id,name:this.name,ctime:+new Date().toLocaleDateString}
+                this.heros.push(newHero);
+                this.id = ''
+                this.name = ''
+              },
+              search(data){
+                return this.heros.filter(item => {
+                  if(item.name.includes(data)) return item
+                })
+              },
+              del(id){
+                this.heros.some((item,index) => {
+                  if(item.id===id){
+                    this.heros.splice(index,1);
+                    return
+                  }
+                });
+              }
+          },
+          directives:{
+            // focus: function (el) { // 自定义指令的简写形式，等同于定义了 bind 和 update 两个钩子函数
+            //   console.log(el)
+            //   el.focus();
+            // }
+          }
+      })
+  </script>
+</body>
+
+</html>

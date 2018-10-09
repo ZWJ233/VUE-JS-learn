@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-cloak>{{ msg | msgFilter | text }}</p>
+    </div>
+    <script>
+        Vue.filter('msgFilter',(data) => {
+            //replace方法第一个参数除了写入一个字符串还可以写入一个正则表达式
+            return data.replace(/单纯/g,'邪恶');
+        })
+        Vue.filter('text',(data) => {
+            return data.replace(/世界上/g,'宇宙中')
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'我是世界上最单纯的人,单纯到每天都问谁是世界上最单纯的人'
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

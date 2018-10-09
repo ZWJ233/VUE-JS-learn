@@ -17,7 +17,7 @@
                 <option value="/">/</option>
             </select>
             <input type="text" v-model="msg2">
-            <input type="button" value="=" @click=math>
+            <input type="button" value="=" @click=math @keyup.enter=math>
             <input type="text" v-model="msg3">
     </div>
     <script>    
