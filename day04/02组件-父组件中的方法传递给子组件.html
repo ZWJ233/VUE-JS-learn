@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <demo @parentfn="show"></demo>
+    </div>
+    <template id="tmp">
+        <input type="button" value="调用父组件中的方法" @click=myclick>
+    </template>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'这是父组件的数据',
+            childrenData:null
+        },
+        methods:{
+            show(data){
+                alert(1)
+                console.log(data)
+                this.childrenData = data
+            }
+        },
+        components:{
+            demo:{
+                data(){
+                    return {data:{name:'zs',age:18}}
+                },
+                template:'#tmp',
+                methods:{
+                    myclick(){
+                        this.$emit('parentfn',this.data)
+                    }
+                }
+            }
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" @click.prevent=flag=!flag :value="flag?msg2:msg1">
+        <login v-if=flag></login>
+        <signup v-if=!flag></signup>
+    </div>
+    <template id="login">
+        <h1>这是登录组件</h1>
+    </template>
+    <template id="signup">
+        <h1>这是注册组件</h1>
+    </template>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            flag:false,
+            msg1:'显示登录组件',
+            msg2:'显示注册组件'
+        },
+        methods:{
+            change(){
+                this.flag = !this.flag
+            }
+        },
+        components:{
+            login:{
+                template:'#login'
+            },
+            signup:{
+                template:'#signup'
+            }
+        }
+    })
+
+</script>
+</html>

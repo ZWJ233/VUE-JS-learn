@@ -35,6 +35,19 @@
             mounted:function(){ //模版加载完成时执行的函数 第四个生命周期函数
                 console.log(document.getElementById('p').innerText);
                 this.show();
+            },
+            beforeUpdate(){
+                //当执行beforeUpdate函数时,页面显示的数据还是旧的,此时data值是最新的,页面尚未与最新数据同步
+            },
+            updated(){
+                //执行updated函数时,页面的新dom树已经与旧的同步,此时的view层和data层同步
+            },
+            beforeDestroy(){
+                //当执行beforeDestroy钩子函数的时候,vue实例已经从运行阶段,进入了销毁阶段
+                //当执行beforeFestroy的时候,实例身上所有的data数据和方法还没有销毁
+            },
+            destroyed(){
+                //执行destroyed函数时,实例已经销毁完成
             }
         })
     </script>

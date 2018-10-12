@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            height: 823px;
+            width: 100%;
+        }
+        #box1{
+            background-color: pink;
+        }
+        #box2{
+            background-color: skyblue;
+            display: none;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <a href="#box2" id="link1">跳转到box2</a>
+    </div>
+    <div id="box2">
+        <a href="#box1" id="link2">跳转到box1</a>
+    </div>
+</body>
+<script>
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    var link1 = document.getElementById('link1');
+    var link2 = document.getElementById('link2');
+    location.onhashchange() = function(){
+        var id = location.hash;
+        id = id.substring(1,id.length);
+        document.getElementById(id).style.display = 'block';
+    }
+</script>
+</html>

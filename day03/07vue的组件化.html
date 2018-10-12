@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <demo></demo>
+        <demo1></demo1>
+        <demo2></demo2>
+        <vm-Tmp></vm-Tmp>
+    </div>
+    <template id="tmp">
+        <h1>这是一个外部template模版</h1>
+    </template>
+    <template id="tmp2">
+        <h1>{{msg}}------{{msg2}}</h1>
+    </template>
+    <script>
+        var tem = Vue.extend({
+            template:'<h1>这是一个Vue组件模版</h1>'
+        })
+        Vue.component('demo',tem);
+        Vue.component('demo1',{template:'<h1>这是一个Vue组件模版</h1>'})
+        Vue.component('demo2',{
+            template:'#tmp'
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{},
+            components:{
+                vmTmp:{
+                    template:'#tmp2',
+                    data(){
+                        return {
+                            msg:'这是一个Vue实例的私有组件模版',
+                            msg2:'data的使用方法'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

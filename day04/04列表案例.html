@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.min.css">
+    <style>
+        .fr{
+            float: right;
+        }
+        .content{
+            margin-left: 50px;
+        }
+        ul{
+            padding: 0
+        }
+        li:hover{
+            background-color: pink;
+            transition: all .5s ease;
+        }
+        .my-enter,
+        .my-leave-to{
+            opacity: 0;
+            transform: translateY(50px)
+        }
+        .my-leave-active,
+        .my-enter-active{
+            transition: all 1s ease;
+        }
+        .my-move{
+            transition: all 1s ease;
+        }
+        .my-leave-active{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+        <div id="app">
+            <cmt-box @fn=getList></cmt-box>
+            <transition-group name="my" appear tag="ul">
+                    <li class="list-group-item" v-for="item in list" :key="item.id">
+                        <span class="badge">评论人： {{ item.user }}</span>
+                        <span class="content">{{ item.content }}</span>
+                        <a href="" @click.prevent=del(item.id) class="fr">删除</a>
+                    </li>
+            </transition-group>
+        </div>
+        <template id="tmpl">
+            <div>
+                <div class="form-group">
+                <label>评论人：</label>
+                <input type="text" class="form-control" v-model="user">
+                </div>
+        
+                <div class="form-group">
+                <label>评论内容：</label>
+                <textarea class="form-control" v-model="content"></textarea>
+                </div>
+        
+                <div class="form-group">
+                <input type="button" value="发表评论" class="btn btn-primary" @click="postComment">
+                </div>
+            </div>
+        </template>
+        <script>
+            var cmtBox = {
+                data(){
+                    return {
+                        user:'',
+                        content:''
+                    }
+                },
+                methods:{
+                    postComment(){
+                        if(!this.user || !this.content) return
+                        var obj = {id:+new Date(),user:this.user,content:this.content}
+                        var list = JSON.parse(localStorage.getItem('list') || '[]')
+                        list.unshift(obj);
+                        localStorage.setItem('list',JSON.stringify(list))
+                        this.user = this.content = ''
+                        this.$emit('fn')
+                    }
+                },
+                template:'#tmpl',
+
+            }
+            var vm = new Vue({
+                el:"#app",
+                data:{
+                    list:''
+                },
+                created(){
+                    this.getList()
+                },
+                methods:{
+                    getList(){
+                        this.list = JSON.parse(localStorage.getItem('list'));
+                    },
+                    del(id){
+                        var list = JSON.parse(localStorage.getItem('list'))
+                        list.forEach((item,i) => {
+                            if(item.id === id){
+                                list.splice(i,1);
+                                return
+                            }
+                        });
+                        localStorage.setItem('list',JSON.stringify(list));
+                        this.getList()
+                    }
+                },
+                components:{
+                    cmtBox
+                }
+            })
+        </script>
+</body>
+</html>
